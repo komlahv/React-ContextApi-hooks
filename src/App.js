@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import UserContext from "./contexts/UserContext";
+import InfoWrapper from "./components/InfoWrapper";
 
 function App() {
+  const [answer, setAnswer] = useState("yes");
+
+  useEffect(
+    () => { console.log('the Effect hook is really cool too'); }
+  );
+
+  const userDetails = {
+    name: "Victor",
+    age: 22,
+    car: "Benz"
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={userDetails}>
+      <InfoWrapper />
+      <p>React hooks are awesome right? {answer}</p>
+      <button onClick={() => setAnswer("oh yeah, check your console")}> Click me</button>
+    </UserContext.Provider>
   );
 }
 
