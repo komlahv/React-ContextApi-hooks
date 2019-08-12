@@ -3,16 +3,23 @@ import UserContext from "./contexts/UserContext";
 import InfoWrapper from "./components/InfoWrapper";
 
 function App() {
+  //use state hook to use state in functions
   const [answer, setAnswer] = useState("yes");
 
+  //use effect hook to use lifecycle in functions
   useEffect(
-    () => { console.log('the Effect hook is really cool too'); }
+    () => { console.log('the Effect hook is really cool too'); }, [answer] //let it know we are watching for changes in answer
+
   );
 
   const userDetails = {
     name: "Victor",
     age: 22,
-    car: "Benz"
+    car: "Benz",
+    changeName: (newName) => {
+      userDetails.name = newName;
+      setAnswer("Updated");
+    }
   }
 
   return (

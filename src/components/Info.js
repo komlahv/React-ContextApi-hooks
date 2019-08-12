@@ -1,10 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import UserContext from "../contexts/UserContext";
 
 function Info() {
   const user = useContext(UserContext);
 
-  return <h1>My Context info: my name is {user.name} and I have a {user.car}</h1>
+  const [info, setInfo] = useState(user)
+
+  return (
+    <Fragment>
+      <h1>My Context info: my name is {info.name} and I have a {info.car}</h1>
+      <button onClick={() => info.changeName("Ben")}>Change Name</button>
+    </Fragment>
+  )
 }
 
 export default Info;
